@@ -1,0 +1,23 @@
+{
+  "name": "ncs_tech_problem_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "solution.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^9.0.2"
+  },
+  "scripts": {
+    "test": "mocha './src/tests/'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aosanya/NCS-tech-problem-1.git"
+  },
+  "author": "Anthony Mugwang'a",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aosanya/NCS-tech-problem-1/issues"
+  },
+  "homepage": "https://github.com/aosanya/NCS-tech-problem-1#readme"
+}
