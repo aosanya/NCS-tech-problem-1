@@ -29,7 +29,7 @@ describe('utilities', function () {
     });    
 });
 
-describe('locator', function () {
+describe('basic locator', function () {
     it('locate 1', function () {
         let stations = [[0 ,0 ,0]]
         let devices = [[0, 0]]
@@ -103,5 +103,68 @@ describe('locator', function () {
 
         assert('distance' in bestlinks[devices[0]] == true, `Distance not reported`); 
         assert.strictEqual(bestlinks[devices[0]]['distance'], 10, `Correct distance not reported`); 
+    });
+})
+
+describe('best link locator', function () {    
+    it('best link with 2 locations', function () {
+        let stations = [[0 , 0 , 20], [0 , 0 , 30]]
+        let devices = [[10, 0]]
+        let bestlinks = linklocator.bestlinks(stations, devices)
+ 
+        assert(devices[0] in bestlinks == true, `Best link not reported`);
+        assert('power' in bestlinks[devices[0]] == true, `Power not reported`);    
+        assert.strictEqual(bestlinks[devices[0]]['power'], 400, `Correct power not reported`);  
+
+        assert('distance' in bestlinks[devices[0]] == true, `Distance not reported`); 
+        assert.strictEqual(bestlinks[devices[0]]['distance'], 10, `Correct distance not reported`); 
+    });
+    it('best link with 3 locations', function () {
+        let stations = [[0 , 0 , 20], [0 , 0 , 30], [0 , 0 , 40]]
+        let devices = [[10, 0]]
+        let bestlinks = linklocator.bestlinks(stations, devices)
+ 
+        assert(devices[0] in bestlinks == true, `Best link not reported`);
+        assert('power' in bestlinks[devices[0]] == true, `Power not reported`);    
+        assert.strictEqual(bestlinks[devices[0]]['power'], 900, `Correct power not reported`);  
+
+        assert('distance' in bestlinks[devices[0]] == true, `Distance not reported`); 
+        assert.strictEqual(bestlinks[devices[0]]['distance'], 10, `Correct distance not reported`); 
+    });
+    it('best link with 3 locations unordered', function () {
+        let stations = [[0 , 0 , 40], [0 , 0 , 20], [0 , 0 , 30]]
+        let devices = [[10, 0]]
+        let bestlinks = linklocator.bestlinks(stations, devices)
+ 
+        assert(devices[0] in bestlinks == true, `Best link not reported`);
+        assert('power' in bestlinks[devices[0]] == true, `Power not reported`);    
+        assert.strictEqual(bestlinks[devices[0]]['power'], 900, `Correct power not reported`);  
+
+        assert('distance' in bestlinks[devices[0]] == true, `Distance not reported`); 
+        assert.strictEqual(bestlinks[devices[0]]['distance'], 10, `Correct distance not reported`); 
+    });
+})
+
+describe('best link locator, many devices', function () {    
+    let stations = [[0 , 0 , 20], [0 , 0 , 30], [0 , 0 , 40]]
+    let devices = [[10, 0], [20, 0]]
+    let bestlinks = linklocator.bestlinks(stations, devices)
+
+    it('best link with 3 locations, 2 devices, 1st device', function () {
+        assert(devices[0] in bestlinks == true, `Best link not reported`);
+        assert('power' in bestlinks[devices[0]] == true, `Power not reported`);    
+        assert.strictEqual(bestlinks[devices[0]]['power'], 900, `Correct power not reported`);  
+
+        assert('distance' in bestlinks[devices[0]] == true, `Distance not reported`); 
+        assert.strictEqual(bestlinks[devices[0]]['distance'], 10, `Correct distance not reported`); 
+    });
+    
+    it('best link with 3 locations, 2 devices, 2nd device', function () {
+        assert(devices[1] in bestlinks == true, `Best link not reported`);
+        assert('power' in bestlinks[devices[1]] == true, `Power not reported`);    
+        assert.strictEqual(bestlinks[devices[1]]['power'], 400, `Correct power not reported`);  
+
+        assert('distance' in bestlinks[devices[1]] == true, `Distance not reported`); 
+        assert.strictEqual(bestlinks[devices[1]]['distance'], 20, `Correct distance not reported`); 
     });
 })
