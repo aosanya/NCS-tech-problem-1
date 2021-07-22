@@ -76,6 +76,13 @@ describe('Trim Search', function () {
 });
 
 describe('basic locator', function () {
+    it('locate No Station', function () {
+        let stations = []
+        let devices = [[0, 0]]
+        let bestlinks = linklocator.bestlinks(stations, devices)
+        assert(devices[0] in bestlinks == true, `Best link not reported`);
+        assert('power' in bestlinks[devices[0]] == false, `Should not return value since reach is 0`);        
+    });
     it('locate 1', function () {
         let stations = [[0 ,0 ,0]]
         let devices = [[0, 0]]

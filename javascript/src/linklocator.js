@@ -28,6 +28,8 @@ function trimSearch(stations, device){
 
 function bestlinks(stations, devices){
     let bestlinks = {}
+    console.log(stations)
+    console.log(devices)
     for (const device of devices) {
         bestlinks[device] = {device : device}
         let trimedStations = trimSearch(stations, device)
@@ -39,7 +41,6 @@ function bestlinks(stations, devices){
             if ('power' in bestlinks[device]){
                 if (linkpower < bestlinks[device]['power']) continue
             }
-            bestlinks[device]['device'] =  device
             bestlinks[device]['station'] =  station
             bestlinks[device]['distance'] =  linkdistance
             bestlinks[device]['power'] =  linkpower

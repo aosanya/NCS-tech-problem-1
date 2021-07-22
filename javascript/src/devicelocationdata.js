@@ -5,8 +5,8 @@ function loaddevicelocations(filepath){
     let devicelocations = []
     for (let i = 0; i < devicelocationsinput.length ; i += 1 ){
         let casedata = devicelocationsinput[i].split(' ')
-        let x = float(casedata[0])
-        let y = float(casedata[1])
+        let x = parseFloat(casedata[0])
+        let y = parseFloat(casedata[1])
         devicelocations.push([x, y])
     }
     return devicelocations

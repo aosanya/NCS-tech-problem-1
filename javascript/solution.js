@@ -6,11 +6,11 @@ let linklocationpath = path.resolve(__dirname, "./data/linklocations.txt")
 let linklocations = linklocationdata.loadlinklocations(linklocationpath)
 
 const devicelocationdata = require("./src/devicelocationdata")
-let devicelocationpath = path.resolve(__dirname, "./data/linklocations.txt")
+let devicelocationpath = path.resolve(__dirname, "./data/devicelocations.txt")
 let devicelocations = devicelocationdata.loaddevicelocations(devicelocationpath)
 
 let bestlinks = linklocator.bestlinks(linklocations, devicelocations)
-
+console.log(bestlinks)
 for (const bestlinkidx in bestlinks) {
     let bestlink = bestlinks[bestlinkidx]
     if ('power' in bestlink){
