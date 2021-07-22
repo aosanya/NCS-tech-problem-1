@@ -29,6 +29,52 @@ describe('utilities', function () {
     });    
 });
 
+describe('Trim Search', function () {
+    it('Trim too far on X', function () {
+        let stations = [[20, 20, 19], [20, 20, 20], [20, 20, 21], [20, 20, 22], [20, 20, 22]]
+        let device = [0, 0]
+        let expectedResults = [ [ 20, 20, 21 ], [ 20, 20, 22 ], [ 20, 20, 22 ]]
+        let expectedHashed = {}
+        for (const item of expectedResults) {
+            expectedHashed[item] = true
+        }
+        let trimSearch = linklocator.trimSearch(stations, device)
+        assert(trimSearch.length == 3, `Locations not found`);
+        
+        let result = linklocator.trimSearch(stations, device)
+        assert(result.length == 3, `Locations not found`);
+        let resultHashed = {}
+        for (const item of result) {
+            resultHashed[item] = true
+        }
+
+        for (const key of Object.keys(resultHashed)) {
+            assert(key in expectedHashed, `Did not find ${key}`)
+        }
+    })
+
+    it('Trim too far on Y', function () {
+        let stations = [[18, 18, 20], [19, 19, 20], [20, 20, 20], [21, 21, 20],[22, 22, 20]]
+        let device = [0, 0]
+        let expectedResults = [ [ 18, 18, 20 ], [ 19, 19, 20 ] ]
+        let expectedHashed = {}
+        for (const item of expectedResults) {
+            expectedHashed[item] = true
+        }
+
+        let result = linklocator.trimSearch(stations, device)
+        assert(result.length == 2, `Locations not found`);
+        let resultHashed = {}
+        for (const item of result) {
+            resultHashed[item] = true
+        }
+
+        for (const key of Object.keys(resultHashed)) {
+            assert(key in expectedHashed, `Did not find ${key}`)
+        }
+    })
+});
+
 describe('basic locator', function () {
     it('locate 1', function () {
         let stations = [[0 ,0 ,0]]

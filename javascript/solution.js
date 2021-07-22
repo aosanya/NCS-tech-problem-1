@@ -17,6 +17,6 @@ for (const bestlinkidx in bestlinks) {
         console.log(`Best link station for point ${bestlink['device'][0]},${bestlink['device'][1]} is ${bestlink['station'][0]},${bestlink['station'][1]} with power ${bestlink['power']}`)
     }
     else{
-        console.log(`No link station within reach for point ${bestlink['station'][0]},${bestlink['station'][1]}`)
+        console.log(`No link station within reach for point ${bestlink['device'][0]},${bestlink['device'][1]}`)
     }
 }

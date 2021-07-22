@@ -7,11 +7,32 @@ function power(reach, distance){
     return Math.pow((reach - distance), 2)
 }
 
+function trimSearch(stations, device){
+    function withinXReach(device) {
+        return function(element) {
+            return Math.abs(element[0] - device[0]) < element[2]
+        }
+    }
+    
+    function withinYReach(device) {
+        return function(element) {
+            return Math.abs(element[1] - device[1]) < element[2]
+        }
+    }
+
+    stations = stations.filter(withinXReach(device))
+    stations = stations.filter(withinYReach(device))
+
+    return stations
+}
+
 function bestlinks(stations, devices){
     let bestlinks = {}
     for (const device of devices) {
         bestlinks[device] = {device : device}
-        for (const station of stations) {
+        let trimedStations = trimSearch(stations, device)
+        if (trimedStations.length == 0) continue
+        for (const station of trimedStations) {
             let linkdistance = distance(device[0], device[1], station[0], station[1])
             let linkpower = power(station[2], linkdistance) 
             if (linkpower == 0) continue
@@ -30,5 +51,6 @@ function bestlinks(stations, devices){
 module.exports = {
     bestlinks,
     distance,
-    power
+    power,
+    trimSearch
 }
