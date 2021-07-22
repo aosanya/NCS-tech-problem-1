@@ -18,6 +18,7 @@ For example [[0, 0, 10],[20, 20, 5],[10, 0, 12]] would be represented as follows
 20 20 5<br />
 10 0 12<br />
 <br />
+#### To Execute the javascript code run the solution.js located at : javascript/solution.py
 
 
 ### Python
@@ -36,5 +37,5 @@ For example [[0, 0, 10],[20, 20, 5],[10, 0, 12]] would be represented as follows
 0 0 10<br />
 20 20 5<br />
 10 0 12<br />
-
+<br />
 #### To Execute the python code run the solution.py located at : python/solution.py
